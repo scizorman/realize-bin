@@ -16,6 +16,11 @@ RUN upx /go/bin/realize
 
 FROM golang:1.13-alpine
 
+RUN apk add --no-cache \
+  git \
+  gcc \
+  musl-dev
+
 COPY --from=builder /go/bin/realize /usr/local/bin/realize
 
 ENTRYPOINT [ "realize" ]
